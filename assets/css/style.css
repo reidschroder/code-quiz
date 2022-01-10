@@ -1,0 +1,51 @@
+* {
+    box-sizing: border-box;
+    background-color: lightsteelblue;
+}
+
+.quiz {
+    color: rgb(17, 17, 31);
+    text-align: center;
+    font-size: 5rem;
+
+}
+
+#quiz-timer {
+    text-align: center;
+}
+
+.start {
+    text-align: center;
+    font-size: 2.5rem;
+}
+
+.center-button {
+    text-align: center;
+}
+
+#quiz-button {
+    outline: none;
+    background-color: lightslategray;
+    text-align: center;
+}
+    #quiz-button:hover {
+        color: white;
+        transition-duration: 1s;
+        background-color: lightblue;
+    }
+
+.hero {
+    flex-wrap: wrap;
+}
+
+.question-box {
+    width: 100%;
+}
+
+footer {
+    text-align: center;
+}
+
+.hide {
+    display: none;
+}
