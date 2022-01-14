@@ -2,6 +2,8 @@ var quizButton = document.querySelector("#quiz-button")
 var timer = 75
 var quizTimer = document.querySelector("#quiz-timer")
 var questionIndex = 0
+var score = 0
+var questionBoxElement = document.getElementById('question-box')
 
 var questions = [
     // add questions here!!
@@ -36,18 +38,24 @@ var questions = [
         answer: "c. correct"
     }
 ];
-
+// display questions
 function displayQuestion() {
-    questionIndex;
-    console.log(questions[questionIndex]);
-}
+    let questions = questions[questionIndex];
 
+    let questionEl = document.querySelector("question-box");
+    questionEl.textContent = question.questionText;
+
+
+    questionIndex;
+}
+// timer countdown
 function countdown() {
     var timeLeft = setInterval(() => {
         
-        if (timer >= 0) {
+        if (timer >= 0 && questionIndex < 5) {
             quizTimer.textContent = timer + " seconds left";
             timer --;
+            questionCount ++;
             
         }
         else {
@@ -63,6 +71,7 @@ function countdown() {
 function startQuiz() {
     var startQuizIntro = document.querySelector(".start-quiz-intro")
     startQuizIntro.setAttribute("class", "hide")
+    questionBoxElement.classList.remove("hide")
     // reset timer and score
     userScore = 0;
 

@@ -3,6 +3,16 @@
     background-color: lightsteelblue;
 }
 
+body {
+    padding: 0;
+    margin: 0;;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+}
+
 .quiz {
     color: rgb(17, 17, 31);
     text-align: center;
@@ -27,6 +37,11 @@
     outline: none;
     background-color: lightslategray;
     text-align: center;
+    border-radius: 5px;
+    padding: 5px 10px;
+    color: white;
+    align-items: center;
+    
 }
     #quiz-button:hover {
         color: white;
@@ -34,16 +49,74 @@
         background-color: lightblue;
     }
 
-.hero {
+    .btn-grid {
+        display: grid;
+        grid-template-columns: repeat(2, auto);
+        gap: 10px;
+        margin: 20px;
+    }
+
+    .btn {
+        background-color: lightslategray;
+        border: 1px solid lightslategray, 100%, 30%;
+        outline: none;
+        background-color: lightslategray;
+        text-align: center;
+        border-radius: 5px;
+        padding: 5px 10px;
+        align-items: center;
+    }
+
+/*.hero {
     flex-wrap: wrap;
+    display: inline-block;
+    width: 800px;
+    max-width: 80%;
+    background-color:rgb(17, 17, 31);
+    border-radius: 3px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
+   
+
+} */
+
+.start-quiz-intro {
+    flex-wrap: wrap;
+    width: 800px;
+    max-width: 80%;
+  
+    border-radius: 3px;
+    padding: 10px;
+    justify-content: center;
+    align-items: center;
 }
 
-.question-box {
-    width: 100%;
+#answer-buttons {
+    background-color: rgb(17, 17, 31);
+}
+
+#question-box {
+    background-color:rgb(17, 17, 31);
+    justify-content: center;
+    align-items: center;
+    
+} 
+
+#question {
+    text-align: center;
+    background-color:rgb(17, 17, 31);
+    color: lightslategray;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+
 }
 
 footer {
-    text-align: center;
+ text-align: center;
+    align-items: baseline;
+    justify-content:last baseline;
+    padding: 0;
+    margin: 0;
 }
 
 .hide {
