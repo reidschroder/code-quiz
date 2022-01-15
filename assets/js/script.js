@@ -38,22 +38,37 @@ var questions = [
         answer: "c. correct"
     }
 ];
+
+var answerBtn0 = document.querySelector("#option0");
+var answerBtn1 = document.querySelector("#option1");
+var answerBtn2 = document.querySelector("#option2");
+var answerBtn3 = document.querySelector("#option3");
+
+var answers = [answerBtn0, answerBtn1, answerBtn2, answerBtn3]
+
 // display questions
 function displayQuestion() {
     let question = questions[questionIndex];
     let answerOptions = question.options;
 
-    let questionEl = document.querySelector("#question-box");
+    let questionEl = document.querySelector("#question");
     questionEl.textContent = question.questionText;
 
+    
+
     for (var i = 0; i < answerOptions.length; i++) {
-        let answerChoices = answerOptions[i];
-        let answerBtn = document.querySelector("#option"+i);
+       let answerChoices = answerOptions[i];
+    
+        let answerBtn = answers[i];
+        
         answerBtn.textContent = answerChoices;
+        console.log(answerBtn);
     }
 
 
-    document.querySelector("#answer-buttons").addEventListener("click",checkAnswer);
+    
+
+    //document.querySelector("#answer-buttons").addEventListener("click",checkAnswer);
 
 
     // determine if content for selected button and correct answer is the same 
@@ -90,7 +105,7 @@ function displayQuestion() {
         }
     }
     
-    document.querySelector("#answer-buttons").addEventListener("click", checkAnswer)
+    
 
 
 
@@ -124,7 +139,10 @@ function countdown() {
 function startQuiz() {
     var startQuizIntro = document.querySelector(".start-quiz-intro")
     startQuizIntro.setAttribute("class", "hide")
+    
     questionBoxElement.classList.remove("hide")
+
+    console.log(questionBoxElement);
     // reset timer and score
     userScore = 0;
 
