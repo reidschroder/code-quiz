@@ -4,6 +4,53 @@ var quizTimer = document.querySelector("#quiz-timer")
 var questionIndex = 0
 var score = 0
 var questionBoxElement = document.querySelector('#question-box')
+var highscore = localStorage.getItem("highscore");
+
+
+
+// check for correct answer
+
+function correctAnswer(answerBtn){
+    //return answerBtn.textContent === question.answer;
+    return answerBtn.textContent == questions[questionIndex]["answer"];
+}
+
+// check if answer is correct
+function checkAnswer(event){
+    let answerBtn = event.target; 
+    // correct answer 
+    if (correctAnswer(answerBtn)){
+        score = score + 20;
+    }
+    // wrong answer 
+    else {
+        if (timer > 10){
+            timer = timer - 10;
+       }
+       else{
+           timer = 0;
+           endQuiz();
+       }
+    }
+
+    questionIndex++;
+
+    // if no more questions, end quiz
+    if (questionIndex < questions.length){
+        displayQuestion();
+    }
+    else{
+        endQuiz();
+    }
+}
+
+function endQuiz() {
+    let finalScore = document.querySelector("#scores")
+    finalScore.textContent = "You scored " + score + "! Great Job!";
+
+    document.querySelector("#quiz-timer").setAttribute("hidden", true);
+}
+
 
 var questions = [
     // add questions here!!
@@ -62,60 +109,16 @@ function displayQuestion() {
         let answerBtn = answers[i];
         
         answerBtn.textContent = answerChoices;
-        console.log(answerBtn);
+        
     }
-
-
-    
-
-    //document.querySelector("#answer-buttons").addEventListener("click",checkAnswer);
-
-
-    // determine if content for selected button and correct answer is the same 
-    function correctAnswer(answerBtn){
-        return answerBtn.textContent === question[questionIndex].answer;
-    }
-    
-    // checkif answeris correct
-    function checkAnswer(event){
-        let answerBtn = event.target; 
-        // correct answer 
-        if (correctAnswer(answerBtn)){
-            score = score + 20;
-        }
-        // incorrect answer 
-        else {
-            if (timeLeft > 10){
-                timeLeft = timeLeft - 10;
-           }
-           else{
-               timeLeft = 0;
-               endQuiz();
-           }
-        }
-
-        questionIndex++;
-    
-        // if no more questions, end quiz
-        if (questionIndex < questions.length){
-            displayQuestion();
-        }
-        else{
-            endQuiz();
-        }
-    }
-    
-    
-
-
-
-
-
-
 
 
 
 }
+
+
+
+
 // timer countdown
 function countdown() {
     var timeLeft = setInterval(() => {
@@ -123,7 +126,7 @@ function countdown() {
         if (timer >= 0 || questionIndex < 5) {
             quizTimer.textContent = timer + " seconds left";
             timer --;
-            questionIndex ++;
+            //questionIndex ++;
             
         }
         else {
@@ -148,7 +151,16 @@ function startQuiz() {
 
     countdown();
     displayQuestion();
+    
+    
 }
 
-// One Line to call one function
+
+
 quizButton.addEventListener("click", startQuiz);
+
+document.querySelector("#answer-buttons").addEventListener("click",checkAnswer);
+
+
+
+
