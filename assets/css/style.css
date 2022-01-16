@@ -136,6 +136,10 @@ footer {
     font-weight: bolder;
 }
 
+#submitinitials {
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-weight: bolder;
+}
 
 .hide {
     display: none;

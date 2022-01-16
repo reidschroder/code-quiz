@@ -6,11 +6,14 @@ var score = 0
 var questionBoxElement = document.querySelector('#question-box')
 var highscore = localStorage.getItem("highscore");
 var containerEl = document.querySelector(".container")
+var startQuizIntro = document.querySelector(".start-quiz-intro")
 
 
 const scoresEl = document.querySelector("#scores");
 const initialsEl = document.querySelector("#initials");
 const submitInitialsBtnEl = document.querySelector("#submitInitials");
+const clearScoresBtnEl = document.querySelector("#clearScores");
+const goBackBtnEl = document.querySelector("#goBack");
 
 // check for correct answer
 
@@ -148,7 +151,6 @@ function startQuiz() {
     
     questionBoxElement.classList.remove("hide")
 
-    console.log(questionBoxElement);
     // reset timer and score
     userScore = 0;
 
@@ -189,6 +191,14 @@ submitInitialsBtnEl.addEventListener("click", function () {
         reset();
     }
 });
+
+//Clear local storage
+clearScoresBtnEl.addEventListener("click", function () {
+    highScores = [];
+    localStorage.setItem("scores", JSON.stringify(highScores));
+    renderHighScores();
+});
+
 
 
 quizButton.addEventListener("click", startQuiz);
