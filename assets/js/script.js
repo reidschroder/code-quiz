@@ -5,8 +5,12 @@ var questionIndex = 0
 var score = 0
 var questionBoxElement = document.querySelector('#question-box')
 var highscore = localStorage.getItem("highscore");
+var containerEl = document.querySelector(".container")
 
 
+const scoresEl = document.querySelector("#scores");
+const initialsEl = document.querySelector("#initials");
+const submitInitialsBtnEl = document.querySelector("#submitInitials");
 
 // check for correct answer
 
@@ -49,6 +53,7 @@ function endQuiz() {
     finalScore.textContent = "You scored " + score + "! Great Job!";
 
     document.querySelector("#quiz-timer").setAttribute("hidden", true);
+    containerEl.classList.remove("hide")
 }
 
 
@@ -56,33 +61,33 @@ var questions = [
     // add questions here!!
      // question 1
      {
-        questionText:"This is question 1",
-        options:["a. answer", "b. correct", "c. answer", "d. answer"],
-        answer:"b. correct"
+        questionText:"HTML is considered as a  ____",
+        options:["a. Programming Language", "b. Markup Language", "c. High Level Language", "d. Foreign Language"],
+        answer:"b. Markup Language"
     },
     // question 2 
     {
-        questionText:"this is question 2",
-        options:["a. correct", "b. answer", "c. answer", "d. answer"],
-        answer:"a. correct"
+        questionText:"If we want to set the style for just one element, which css selector will we use?",
+        options:["a. id", "b. text", "c. class", "d. name"],
+        answer:"a. id"
     },
     // question 3
     {
-        questionText:"This is question 3",
-        options:["a. answer", "b. answer", "c. answer", "d. correct"],
-        answer:"d. correct"
+        questionText:"The HTML tag that specifies a CSS style embedded in an element is called ____?",
+        options:["a. Design", "b. Define", "c. Modify", "d. Style"],
+        answer:"d. Style"
     },
     // question 4 
     {
-        questionText:"this is question 4",
-        options:["a. answer", "b. answer", "c. correct", "d. answer"],
-        answer:"c. correct"
+        questionText:"Which of the following HTML element is used for creating an unordered list?",
+        options:["a. <li>", "b. <p>", "c. <ul>", "d. <ol>"],
+        answer:"c. <ul>"
     },
     // question 5
     {
-        questionText:"this is question 5",
-        options: ["a. answer", "b. answer", "c. correct", "d. answer"],
-        answer: "c. correct"
+        questionText:"Which of the following attributes is used to add link to any element?",
+        options: ["a. link", "b. ref", "c. href", "d. style"],
+        answer: "c. href"
     }
 ];
 
@@ -126,13 +131,11 @@ function countdown() {
         if (timer >= 0 || questionIndex < 5) {
             quizTimer.textContent = timer + " seconds left";
             timer --;
-            //questionIndex ++;
+            
             
         }
         else {
             clearInterval(timeLeft);
-
-            // call game over function
         }
     }, 1000);
 }
@@ -154,7 +157,38 @@ function startQuiz() {
     
     
 }
+//reset quiz score 
+function reset() {
+    score = 0;
+    currentQ = 0;
+    secondsElapsed = 0;
+    
+}
 
+function renderHighScores() {
+    // Clear content
+    scoresEl.innerHTML = "";
+    highScores = JSON.parse(localStorage.getItem("scores"));
+    for (let i = 0; i < highScores.length; i++) {
+        let scoreItem = document.createElement("div");
+        scoreItem.textContent = `${(i + 1)}. ${highScores[i].username} - ${highScores[i].userScore}`;
+        scoresEl.appendChild(scoreItem);
+    }
+}
+
+
+submitInitialsBtnEl.addEventListener("click", function () {
+    let initValue = initialsEl.value.trim();
+    if (initValue) {
+        let userScore = { username: initValue, userScore: score };
+        initialsEl.value = '';
+        highScores = JSON.parse(localStorage.getItem("scores")) || [];
+        highScores.push(userScore)
+        localStorage.setItem("scores", JSON.stringify(highScores));
+        renderHighScores();
+        reset();
+    }
+});
 
 
 quizButton.addEventListener("click", startQuiz);
